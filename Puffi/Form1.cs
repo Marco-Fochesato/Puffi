@@ -25,18 +25,10 @@ namespace Puffi
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
             pos.x = 0;
             pos.y = 0;
             pnlPuffo.Location = new Point(pos.x, pos.y);
-
-            // Mette la casa in una posizione casuale all'interno dell'area
-            var rand = new Random();
-            int maxX = Math.Max(0, pnlArea.ClientSize.Width - pnlCasa.Width);
-            int maxY = Math.Max(0, pnlArea.ClientSize.Height - pnlCasa.Height);
-            int x = rand.Next(0, maxX + 1);
-            int y = rand.Next(0, maxY + 1);
-            pnlCasa.Location = new Point(x, y);
+            SpostaCasa(false); // Posiziona la casa in una posizione casuale all'avvio senza incrementare i punti
         }
 
         private void PressTasto(object sender, KeyEventArgs e)
@@ -56,14 +48,7 @@ namespace Puffi
 
                         if (pnlPuffo.Bounds.IntersectsWith(pnlCasa.Bounds))
                         {
-                            punti++; // Incrementa i punti
-                            txtPunti.Text = "Punti: " + punti.ToString(); //mette i tunti sulla txt
-                            var rand = new Random();
-                            int maxX = Math.Max(0, pnlArea.ClientSize.Width - pnlCasa.Width); // trova max in x
-                            int maxY = Math.Max(0, pnlArea.ClientSize.Height - pnlCasa.Height); // trova max in y
-                            int x = rand.Next(0, maxX + 1); // genera un numero casuale in x rispettando max
-                            int y = rand.Next(0, maxY + 1); // genera un numero casuale in y rispettando max
-                            pnlCasa.Location = new Point(x, y); //sposta la casa
+                            SpostaCasa(true);
                         }
                     }
                     break;
@@ -77,14 +62,7 @@ namespace Puffi
                         pnlPuffo.Location = new Point(pos.x, pos.y);
                         if (pnlPuffo.Bounds.IntersectsWith(pnlCasa.Bounds))
                         {
-                            punti++;
-                            txtPunti.Text = "Punti: " + punti.ToString();
-                            var rand = new Random();
-                            int maxX = Math.Max(0, pnlArea.ClientSize.Width - pnlCasa.Width);
-                            int maxY = Math.Max(0, pnlArea.ClientSize.Height - pnlCasa.Height);
-                            int x = rand.Next(0, maxX + 1);
-                            int y = rand.Next(0, maxY + 1);
-                            pnlCasa.Location = new Point(x, y);
+                            SpostaCasa(true);
                         }
                     }
                     break;
@@ -98,14 +76,7 @@ namespace Puffi
                         pnlPuffo.Location = new Point(pos.x, pos.y);
                         if (pnlPuffo.Bounds.IntersectsWith(pnlCasa.Bounds))
                         {
-                            punti++;
-                            txtPunti.Text = "Punti: " + punti.ToString();
-                            var rand = new Random();
-                            int maxX = Math.Max(0, pnlArea.ClientSize.Width - pnlCasa.Width);
-                            int maxY = Math.Max(0, pnlArea.ClientSize.Height - pnlCasa.Height);
-                            int x = rand.Next(0, maxX + 1);
-                            int y = rand.Next(0, maxY + 1);
-                            pnlCasa.Location = new Point(x, y);
+                            SpostaCasa(true);
                         }
                     }
                     break;
@@ -119,18 +90,26 @@ namespace Puffi
                         pnlPuffo.Location = new Point(pos.x, pos.y);
                         if (pnlPuffo.Bounds.IntersectsWith(pnlCasa.Bounds))
                         {
-                            punti++;
-                            txtPunti.Text = "Punti: " + punti.ToString();
-                            var rand = new Random();
-                            int maxX = Math.Max(0, pnlArea.ClientSize.Width - pnlCasa.Width);
-                            int maxY = Math.Max(0, pnlArea.ClientSize.Height - pnlCasa.Height);
-                            int x = rand.Next(0, maxX + 1);
-                            int y = rand.Next(0, maxY + 1);
-                            pnlCasa.Location = new Point(x, y);
+                            SpostaCasa(true);
                         }
                     }
                     break;
             }
+        }
+        private void SpostaCasa(bool incrPunti )
+        {
+            if (incrPunti)
+            {
+                punti++; // Incrementa i punti
+                txtPunti.Text = "Punti: " + punti.ToString(); //mette i punti sulla txtPunti
+            }
+            var rand = new Random();
+            int maxX = Math.Max(0, pnlArea.ClientSize.Width - pnlCasa.Width); // trova max in x
+            int maxY = Math.Max(0, pnlArea.ClientSize.Height - pnlCasa.Height); // trova max in y
+            int x = rand.Next(0, maxX + 1); // genera un numero casuale in x rispettando max
+            int y = rand.Next(0, maxY + 1); // genera un numero casuale in y rispettando max
+            pnlCasa.Location = new Point(x, y); //sposta la casa
+            
         }
     }
 }
