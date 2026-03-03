@@ -104,8 +104,8 @@ namespace Puffi
                 txtPunti.Text = "Punti: " + punti.ToString(); //mette i punti sulla txtPunti
             }
             var rand = new Random();
-            int maxX = Math.Max(0, pnlArea.ClientSize.Width - pnlCasa.Width); // trova max in x
-            int maxY = Math.Max(0, pnlArea.ClientSize.Height - pnlCasa.Height); // trova max in y
+            int maxX = Math.Max(0, pnlArea.Width - pnlCasa.Width); // trova max in x
+            int maxY = Math.Max(0, pnlArea.Height - pnlCasa.Height); // trova max in y
             int x = rand.Next(0, maxX + 1); // genera un numero casuale in x rispettando max
             int y = rand.Next(0, maxY + 1); // genera un numero casuale in y rispettando max
             pnlCasa.Location = new Point(x, y); //sposta la casa
@@ -113,3 +113,4 @@ namespace Puffi
         }
     }
 }
+
